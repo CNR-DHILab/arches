@@ -114,10 +114,9 @@ INSTALLED_APPS = (
     'django_celery_results',
     'compressor',
     'dataspace',
-    'autotranslate',
 )
 
-ALLOWED_HOSTS = ['127.0.0.1', '150.145.56.88']
+ALLOWED_HOSTS = []
 
 SYSTEM_SETTINGS_LOCAL_PATH = os.path.join(APP_ROOT, 'system_settings', 'System_Settings.json')
 WSGI_APPLICATION = 'dataspace.wsgi.application'

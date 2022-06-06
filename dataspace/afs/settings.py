@@ -85,7 +85,6 @@ INSTALLED_APPS = (
     "django_celery_results",
     "afs",
     "compressor",
-    "autotranslate",
     # "debug_toolbar"
 )
 
