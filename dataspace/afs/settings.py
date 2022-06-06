@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     "django_celery_results",
     "afs",
     "compressor",
+    "autotranslate",
     # "debug_toolbar"
 )
 
@@ -167,9 +168,9 @@ USER_GRAPH_CARDWIDGETS_TIMEOUT = 3600 * 24 * 30  # seconds * hours * days = ~1mo
 MOBILE_OAUTH_CLIENT_ID = ""  #'9JCibwrWQ4hwuGn5fu2u1oRZSs9V6gK8Vu8hpRC4'
 MOBILE_DEFAULT_ONLINE_BASEMAP = {"default": "mapbox://styles/mapbox/streets-v9"}
 
-APP_TITLE = "Arches for Science"
+APP_TITLE = "ISPC Data Space"
 COPYRIGHT_TEXT = "All Rights Reserved."
-COPYRIGHT_YEAR = "2019"
+COPYRIGHT_YEAR = "2022"
 
 CELERY_BROKER_URL = "amqp://guest:guest@localhost"
 CELERY_ACCEPT_CONTENT = ["json"]
@@ -224,7 +225,7 @@ RENDERERS += [
         "iconclass": "fa fa-bolt",
         "component": "views/components/cards/file-renderers/raman-reader",
         "ext": "txt",
-        "type": "text/plain",   
+        "type": "text/plain",
         "exclude": "",
     },
     {
