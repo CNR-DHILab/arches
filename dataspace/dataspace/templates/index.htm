@@ -150,7 +150,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                     <a class="application-login" href="{% url 'auth' %}?next={% url 'home' %}{% if user.username != 'anonymous' %}&logout=true{% endif %}">{% trans 'Log out' %}</a>
                             {% endif %}
                         </li>
-                        {% if show_language_swtich %}
+                        <!-- {% if show_language_swtich %}
                             <li>
                                 {% get_current_language as LANGUAGE_CODE %}
                                 <div class="lang-switch" style="max-width: none;" data-bind='component: {
@@ -160,7 +160,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                     }
                                 }'></div>
                             </li>
-                        {% endif %}
+                        {% endif %} -->
                     </ul>
                 </div>
             </div>
@@ -251,7 +251,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     <!-- SLIDE 3 -->
                     <li data-transition="fade" data-slotamount="9" data-masterspeed="0" data-title="Support Tools">
                         <!-- MAIN IMAGE -->
-                        <img src="{% static 'img/landing/Epigrafe.jpg' %}" alt="slidebg3" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="repeat">
+                        <img src="{% static 'img/landing/Epigrafe.JPG' %}" alt="slidebg3" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="repeat">
 
                         <!-- LAYERS -->
                         <!-- NEW LAYER -->
@@ -660,10 +660,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="afs-splash-links">
                     <ul class="splash-link-container">
                         <li>
-                            <a class="splash-link-address" href="{% url 'construction' %}"> target="_blank">{% trans "About Data Space" %}</a>
+                            <a class="splash-link-address" href="{% url 'construction' %}" target="_blank">{% trans "About Data Space" %}</a>
                         </li>
                         <li>
-                            <a class="splash-link-address" href="{% url 'construction' %}"> target="_blank">{% trans "Contact Us" %}</a>
+                            <a class="splash-link-address" href="{% url 'construction' %}" target="_blank">{% trans "Contact Us" %}</a>
                         </li>
                     </ul>
                 </div>
@@ -677,10 +677,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="afs-splash-links">
                     <ul class="splash-link-container">
                         <li>
-                            <a class="splash-link-address" href="{% url 'construction' %}"> target="_blank">{% trans "Cookies Policy" %}</a>
+                            <a class="splash-link-address" href="{% url 'construction' %}" target="_blank">{% trans "Cookies Policy" %}</a>
                         </li>
                         <li>
-                            <a class="splash-link-address" href="{% url 'construction' %}"> target="_blank">{% trans "Privacy Policy" %}</a>
+                            <a class="splash-link-address" href="{% url 'construction' %}" target="_blank">{% trans "Privacy Policy" %}</a>
                         </li>
                     </ul>
                 </div>
