@@ -1,26 +1,48 @@
 virtualenv/ENV*
 env
 
-tests/logs
 tests/elasticsearch
-tests/settings_local.py
 tests/fixtures/testing_prj/testing_prj/media/packages/*
+tests/logs
+tests/settings_local.py
 
-arches/Net_files
-arches/logs/*.log
-arches/logs/*.prof
-arches/logs/authority_file_errors.txt
-arches/elasticsearch
-arches/uploadedfiles
-arches/tileserver/cache
 arches/app/media/js/docs
 arches/app/media/packages
 arches/app/media/bower_components
-arches/install/elasticsearch-*.zip
 arches/db/system_settings/Arches_System_Settings_Local.json
+arches/elasticsearch
+arches/install/elasticsearch-*.zip
+arches/logs/*.log
+arches/logs/*.prof
+arches/logs/authority_file_errors.txt
+arches/Net_files
+arches/tileserver/cache
+arches/uploadedfiles
 
 dataspace/CACHE
+dataspace/dataspace/Cantaloupe
+dataspace/dataspace/export_deliverables
+dataspace/dataspace/logs
+dataspace/dataspace/media/packages
+dataspace/dataspace/reports
+dataspace/dataspace/settings.py
 dataspace/dataspace/settings_local.py
+dataspace/dataspace/uploadedfiles/*
+
+dataspace/dataspace/media/img/landing/bozza_video.mp4
+
+*.code-workspace
+*.pyc
+*.log
+
+.eggs
+.idea
+.vscode
+.coverage
+.DS_Store
+.atom-build.json
+.atom-build.yml
+docker-compose-local.yml
 
 build
 djcp.sh
@@ -33,27 +55,12 @@ yarn-error.log
 migrate_graphs.py
 steps to release.txt
 
-*.code-workspace
-*.pyc
-
-.eggs
-.idea
-.vscode
-.coverage
-.DS_Store
-.atom-build.json
-.atom-build.yml
-docker-compose-local.yml
-
 dist
 node_modules
 docs/_build
+__pycache__
 
 update commit
 pip-wheel-metadata
 
 ispc_dataspace_old
-
-dataspace/dataspace/media/img/landing/bozza_video.mp4
-dataspace/dataspace/reports
-dataspace/dataspace/settings.py
