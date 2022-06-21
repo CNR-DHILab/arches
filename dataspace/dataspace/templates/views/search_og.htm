@@ -1,3 +1,21 @@
+
+<!--
+ARCHES - a program developed to inventory and manage immovable cultural heritage.
+Copyright (C) 2013 J. Paul Getty Trust and World Monuments Fund
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
 {% extends "base-manager.htm" %}
 {% load i18n %}
 {% load template_tags %}
@@ -7,98 +25,74 @@
 
 
 {% block main_content %}
+    <div class="content-panel" data-bind="click:function() { menuActive(false); }, visible: true">
 
-    <div data-bind="click:function() { menuActive(false); }, visible: true">
-
-        <div class="container pt-2">
-            <div class="row mt-2">
-
-                <div class="col-4" data-bind="component: {
+        <div class="search-results-panel">
+            <div class="flex search-attribute-widget">
+                <div class="search-dropdown" data-bind="component: {
                     name: 'term-filter',
                     params: sharedStateObject
-                    }">
-                </div>
+                }"></div>
 
-                <div class="col text-end">
-                    <!-- Title Block -->
-                    <div class="search-type-btn-panel" style="height: 35px;" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
-                        <!-- ko if: filter.type === 'filter' && filter.enabled -->
-                        {% if user_can_read %}
-                        <button class="search-type-btn relative" onclick="goDown();" style="height: 35px;" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){$parent.sharedStateObject.selectedTab(filter.componentname)}">
-                            <i data-bind="css: filter.icon"></i>
-                            <span data-bind="text: filter.name"></span>
-                        </button>
-                        {% endif %}
-                        <!-- /ko -->
-                    </div>
-                </div>
-              </div>
+                <!-- Inline Filters (for QA and Resource Type) -->
+                <div class="search-inline-filters">
 
-            <!-- Result Count and ordering Block -->
-            <div class="row row align-items-end mt-3">
-
-                <div class="col-4">
-                    <a class="display-6" data-bind="text: '{% trans 'Results: ' %}' + total()"></a>
-                    <!--ko if: ko.unwrap(sharedStateObject.filterApplied) -->
-                    <button type="button" class="btn btn-light btn-sm" data-bind="click: function() {sharedStateObject.clearQuery();}">{% trans "Clear Filters" %}</button>
-                    <!--/ko-->
-                </div>
-
-                <div class="col">
-                    <!-- Resource Type Filter -->
-                    <div class="" data-bind="component: {
-                      name: 'resource-type-filter',
-                      params: sharedStateObject
+                    <div class="resource-filter" data-bind="component: {
+                            name: 'resource-type-filter',
+                            params: sharedStateObject
                     }"></div>
 
-                    <!-- QA Type Filter -->
                     <!--ko if: sharedStateObject.userIsReviewer-->
-                    <div class="" data-bind="component: {
-                      name: 'provisional-filter',
-                      params: sharedStateObject
+                    <div class="qa-filter" data-bind="component: {
+                        name: 'provisional-filter',
+                        params: sharedStateObject
                     }"></div>
                     <!--/ko-->
-                </div>
 
-                <div class="col">
+                </div>
+            </div>
+            <div class="search-tools-container">
+                <!-- Result Count and ordering Block -->
+                <div class="search-count-container">
+                    <h3 class="search-title" data-bind="text: '{% trans 'Results: ' %}' + total()"></h3>
+                </div>
+                <div class="search-controls-container">
+                    <!--ko if: ko.unwrap(sharedStateObject.filterApplied) -->
+                    <button class="btn-sm btn btn-mint btn-labeled clear-filter" data-bind="click: function() {sharedStateObject.clearQuery();}">{% trans "Clear Filters" %}</button>
+                    <!--/ko-->
+                    <span style="width:125px">
+                        <div data-bind="component: {
+                            name: 'sort-results',
+                            params: sharedStateObject
+                        }"></div>
+                    </span>
+                </div>
+            </div>
+
+            <div class="search-control-container" data-bind="css: { 'slide': !sharedStateObject.resultsExpanded() }">
+                <!-- Results Block -->
+                <div class="search-results-container">
                     <div data-bind="component: {
-                        name: 'sort-results',
+                        name: 'search-results',
                         params: sharedStateObject
                     }"></div>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- Results Block -->
-        <div class="container py-2 px-1" data-bind="css: { 'slide': !sharedStateObject.resultsExpanded() }">
-            <div class="row">
-
-                <div data-bind="component: {
-                    name: 'search-results',
-                    params: sharedStateObject
-                    }"></div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="" data-bind="component: {
-                    name: 'paging-filter',
-                    params: sharedStateObject
+                <div class="search-footer" style="background-color: #ebeef0;" data-bind="component: {
+                        name: 'paging-filter',
+                        params: sharedStateObject
                     }"></div>
 
             </div>
         </div>
 
-
-        <div class="container" id="details-cont">
+        <div class="">
             <!-- Title Block -->
             <div class="search-toolbar" style="">
                 <div class="search-type-btn-panel" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
                     <!-- ko if: filter.type === 'filter' && filter.enabled -->
                     {% if user_can_read %}
-                    <button class="search-type-btn relative" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){$parent.sharedStateObject.selectedTab(filter.componentname)}">
+                    <button class="search-type-btn relative" style="" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){$parent.sharedStateObject.selectedTab(filter.componentname)}">
                         <i data-bind="css: filter.icon"></i>
                         <span data-bind="text: filter.name"></span>
                     </button>
@@ -120,7 +114,8 @@
                 </div>
             </div>
 
-            <div class="row pb-5">
+            <div class="flex" style="margin: auto; width: 75%">
+
 
                 <!-- Card Container -->
                 <div class="card-form-preview-container relative">
@@ -155,10 +150,5 @@
 {% block tabs %}{% endblock tabs %}
 
 {% block pre_require_js %}
-<script type="text/javascript">
-    function goDown(){
-   window.scrollTo(0,3500);
-    }
-  </script>
 {{block.super}}
 {% endblock pre_require_js %}
