@@ -102,7 +102,7 @@ Data Space Blue Darker: #1E2D40 -->
 
 
         <!-- Carousel -->
-        <div id="carouselDataSpace" class="carousel slide carousel-fade" style="height: calc(100vh - 100px);" data-bs-ride="carousel" data-bs-interval="5000">
+        <div id="carouselDataSpace" class="carousel slide carousel-fade" style="height: calc(100vh - 100px);" data-bs-ride="carousel" data-bs-interval="4000">
             <div class="carousel-indicators" style="margin-bottom: 3rem;">
                 <button type="button" data-bs-target="#carouselDataSpace" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselDataSpace" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -354,7 +354,7 @@ Data Space Blue Darker: #1E2D40 -->
             <!-- Carousel Visible only on larger screens -->
             <!-- <div class="row px-lg-5 mt-4 mx-lg-5 d-none"> -->
             <div class="row px-lg-5 mt-4 mx-lg-5 d-none d-md-block">
-                <div class="carousel" data-flickity='{ "autoPlay": true, "wrapAround": true, "groupCells": 2}'>
+                <div class="main-carousel">
 
                     <div class="carousel-cell">
                         <div class="card mx-2" style="min-height: 250px;">
@@ -613,17 +613,14 @@ Data Space Blue Darker: #1E2D40 -->
             const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-            var elem = document.querySelector('.main-carousel');
-            var flkty = new Flickity( elem, {
+            let elem = document.querySelector('.main-carousel');
+            let flkty = new Flickity( elem, {
               // options
               cellAlign: 'left',
-              contain: true
-            });
-
-            // element argument can be a selector string
-            //   for an individual element
-            var flkty = new Flickity( '.main-carousel', {
-              // options
+              contain: true,
+              autoPlay: true,
+              wrapAround: true,
+              groupCells: 2
             });
 
         </script>
