@@ -160,9 +160,10 @@ li, .afs-report-a.active:hover {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 85px;
+    margin-top: 10px;
     flex: 1;
-    flex-direction: column
+    flex-direction: column;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .afs-tab-container {
@@ -664,7 +665,7 @@ i.toggle:hover {
 }
 
 .afs-summary-report .afs-summary-block .afs-block-attributes:last-of-type {
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
     border-bottom: 1px solid #ddd;
 }
 

@@ -3603,7 +3603,7 @@ hr {
     margin: 10px 0;
 }
 .row {
-    margin: 0 -7.5px;
+    margin: 0px;
 }
 [class^="col-"]:not(.pad-no) {
     padding-left: 7.5px;

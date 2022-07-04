@@ -6274,7 +6274,7 @@ th.notif-type {
             display: inherit;
         }
         .ep-toolbar {
-            position: fixed;
+            // position: fixed;
             z-index: 10;
         }
         .content-panel {
@@ -6545,6 +6545,7 @@ th.notif-type {
     font-size: 1.6em;
     padding-left: 0px;
     padding-top: 4px;
+    color: #fff;
 }
 
 .ep-graph-title-icon {
@@ -8825,7 +8826,7 @@ a.mega-dropdown-toggle.disabled {
 
 .rp-tile-separator {
     border: 1px solid #ddd;
-    margin-right: 9%;
+    margin-right: 5%;
 }
 
 @media (min-width: 992px) {
@@ -9384,11 +9385,11 @@ div.row.widget-wrapper.report-header:hover {
 }
 
 #mainnav-container {
-    z-index: 15;
+    z-index: 150000;
 }
 
 #navbar {
-    z-index: 16;
+    z-index: 150001;
 }
 
 .map-widget-icon {
@@ -10641,7 +10642,7 @@ ul.pagination {
 }
 
 .time-search-container #calendar {
-    display: flex;
+    display: inline-block;
     flex-wrap: wrap;
 }
 
@@ -10805,7 +10806,7 @@ ul.pagination {
     font-size: 20px;
     font-weight: 500;
     color: #666;
-    margin-top: 0px;
+    margin-top: 3px;
     margin-bottom: 0px;
     padding: 10px 5px 0px 10px;
 }
@@ -10874,7 +10875,7 @@ ul.pagination {
 }
 
 .time-wheel-wrap {
-    width: 100%;
+    width: 35%;
 }
 
 .filter-title {
@@ -10909,6 +10910,7 @@ ul.pagination {
 
 .time-wheel-wrap .sequence {
     font-size: 14px;
+    margin-top: 10px;
     color: #25476A;
     font-weight: 600;
     position: absolute;
@@ -10921,7 +10923,7 @@ ul.pagination {
 
 .time-wheel-wrap .chart {
     position: relative;
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 0px;
 }
 
@@ -11287,9 +11289,7 @@ table.table.dataTable {
 .search-toolbar {
     display: -webkit-flex;
     display: flex;
-    height: 51px;
-    margin: auto;
-    margin-top: 10px;
+    // margin: auto;
     background: #f4f4f4;
     border-top: solid 1px #bbd1ea;
     border-bottom: solid 1px #bbd1ea;
@@ -11320,12 +11320,12 @@ table.table.dataTable {
 }
 
 .search-type-btn {
-    height: 50px;
+    height: 35px;
     padding: 0px;
     font-size: 12px;
     font-weight: 600;
     color: #888;
-    min-width: 150px;
+    min-width: 100px;
     border-color: #BBD1EA;
     border-top: none;
     border-right: 1px solid;
@@ -11403,11 +11403,13 @@ table.table.dataTable {
 }
 
 .search-type-btn i {
-    font-size: 15px;
+    padding-top: 3px;
+    font-size: 14px;
 }
 
 .search-type-btn p {
-    padding-top: 5px;
+    padding-top: 0px;
+    font-size: 11.5px;
 }
 
 .search-type-btn-popup-panel {
@@ -11504,14 +11506,15 @@ table.table.dataTable {
 }
 
 .search-popup-panel {
-    position: absolute;
-    top: 0;
-    right: 0px;
     z-index: 900;
     background-color: #fff;
-    width: 400px;
+    // width: 400px;
     height: calc(100vh - 100px);
-    border-left: solid 1px #dcdcdc;
+}
+
+.hide-n-slide {
+  margin-bottom: 1rem!important;
+  display: block;
 }
 
 .rr-splash-img-container .fa {

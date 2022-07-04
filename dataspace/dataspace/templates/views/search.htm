@@ -19,18 +19,35 @@
                     }">
                 </div>
 
-                <div class="col text-end">
-                    <!-- Title Block -->
-                    <div class="search-type-btn-panel" style="height: 35px;" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
-                        <!-- ko if: filter.type === 'filter' && filter.enabled -->
-                        {% if user_can_read %}
-                        <button class="search-type-btn relative" onclick="goDown();" style="height: 35px;" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){$parent.sharedStateObject.selectedTab(filter.componentname)}">
-                            <i data-bind="css: filter.icon"></i>
-                            <span data-bind="text: filter.name"></span>
-                        </button>
-                        {% endif %}
-                        <!-- /ko -->
-                    </div>
+                <div class="col">
+                  <!-- Title Block -->
+                  <div class="search-toolbar" style="">
+
+                      <div class="search-type-btn-panel" id="toggle1" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}" style="height: 35px;">
+                          <!-- ko if: filter.type === 'filter' && filter.enabled && filter.name !== 'Details'-->
+                          {% if user_can_read %}
+                          <button class="search-type-btn relative" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){var x = document.getElementById('filtersRow1'); if (x.style.display === 'block' && $parent.sharedStateObject.selectedTab() === filter.componentname) { x.style.display = 'none'; } else { x.style.display = 'block'; } $parent.sharedStateObject.selectedTab(filter.componentname); }">
+                              <i data-bind="css: filter.icon"></i>
+                              <p data-bind="text: filter.name"></p>
+                          </button>
+                          {% endif %}
+                          <!-- /ko -->
+                      </div>
+
+                      <div class="search-type-btn-popup-panel" >
+                          <div class="popup-panel-row" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
+                              <!-- ko if: filter.type === 'popup' && filter.enabled -->
+                              {% if user_can_read %}
+                              <button class="saved-search-container search-type-btn relative" style="height: 35px;" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}, click: function(){$parent.sharedStateObject.selectPopup(filter.componentname); setTimeout(function() {$(window).trigger('resize');}, 100);}">
+                                  <i data-bind="css: filter.icon"></i>
+                                  <p data-bind="text: filter.name"></p>
+                              </button>
+                              {% endif %}
+                              <!-- /ko -->
+                          </div>
+                      </div>
+
+                  </div>
                 </div>
               </div>
 
@@ -70,6 +87,51 @@
             </div>
         </div>
 
+        <div class="container mt-3" id="details-cont">
+            <div class="row">
+
+                <!-- Card Container -->
+                <div class="card-form-preview-container relative hide-n-slide" id="filtersRow1" style="display: none;">
+                    <div class="tab-content relative" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}" style="text-align: -webkit-center;">
+                        <!-- ko if: filter.type === 'filter' && filter.enabled -->
+                        <div class="tab-pane" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}">
+                            <div style="height: 60vh;" data-bind="component: {
+                                name: filter.componentname,
+                                params: $parent.sharedStateObject
+                            }"></div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+              <div class="card-form-preview-container relative hide-n-slide" id="filtersRow2">
+              <div class="tab-content" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}, visible: sharedStateObject.selectedPopup() !== ''">
+                  <!-- ko if: filter.type === 'popup' && filter.enabled && filter.name === 'Time Filter' -->
+                  <div class="tab-pane" style="text-align: -webkit-center;" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}">
+                      <div data-bind="component: {
+                          name: filter.componentname,
+                          params: $parent.sharedStateObject
+                      }"></div>
+                  </div>
+                  <!-- /ko -->
+
+                  <!-- ko if: filter.type === 'popup' && filter.enabled && filter.name !== 'Time Filter' -->
+                  <div class="tab-pane" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}">
+                      <div data-bind="component: {
+                          name: filter.componentname,
+                          params: $parent.sharedStateObject
+                      }"></div>
+                  </div>
+                  <!-- /ko -->
+
+              </div>
+            </div>
+            </div>
+        </div>
+
         <!-- Results Block -->
         <div class="container py-2 px-1" data-bind="css: { 'slide': !sharedStateObject.resultsExpanded() }">
             <div class="row">
@@ -91,74 +153,12 @@
             </div>
         </div>
 
-
-        <div class="container" id="details-cont">
-            <!-- Title Block -->
-            <div class="search-toolbar" style="">
-                <div class="search-type-btn-panel" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
-                    <!-- ko if: filter.type === 'filter' && filter.enabled -->
-                    {% if user_can_read %}
-                    <button class="search-type-btn relative" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}, click: function(){$parent.sharedStateObject.selectedTab(filter.componentname)}">
-                        <i data-bind="css: filter.icon"></i>
-                        <span data-bind="text: filter.name"></span>
-                    </button>
-                    {% endif %}
-                    <!-- /ko -->
-                </div>
-
-                <div class="search-type-btn-popup-panel">
-                    <div class="popup-panel-row" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
-                        <!-- ko if: filter.type === 'popup' && filter.enabled -->
-                        {% if user_can_read %}
-                        <button class="saved-search-container search-type-btn-popup relative" style="" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}, click: function(){$parent.sharedStateObject.selectPopup(filter.componentname); setTimeout(function() {$(window).trigger('resize');}, 100);}">
-                            <i data-bind="css: filter.icon"></i>
-                            <!-- <p data-bind="text: filter.name"></p> -->
-                        </button>
-                        {% endif %}
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="row pb-5">
-
-                <!-- Card Container -->
-                <div class="card-form-preview-container relative">
-                    <div class="tab-content relative" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
-                        <!-- ko if: filter.type === 'filter' && filter.enabled -->
-                        <div class="tab-pane" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}">
-                            <div style="height: calc(100vh - 100px)" data-bind="component: {
-                                name: filter.componentname,
-                                params: $parent.sharedStateObject
-                            }"></div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-
-                    <div class="tab-content search-popup-panel" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}, visible: sharedStateObject.selectedPopup() !== ''">
-                        <!-- ko if: filter.type === 'popup' && filter.enabled -->
-                        <div class="tab-pane" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}">
-                            <div data-bind="component: {
-                                name: filter.componentname,
-                                params: $parent.sharedStateObject
-                            }"></div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 {% endblock main_content %}
 
 {% block tabs %}{% endblock tabs %}
 
 {% block pre_require_js %}
-<script type="text/javascript">
-    function goDown(){
-   window.scrollTo(0,3500);
-    }
-  </script>
+
 {{block.super}}
 {% endblock pre_require_js %}
