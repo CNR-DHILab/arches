@@ -23,7 +23,7 @@
 
 
 <!-- Report Content -->
-<div class="rp-report-container-preview">
+<div class="rp-report-container-preview container">
 
     {% block header %}
     {% endblock header %}
@@ -61,21 +61,22 @@
         </div>
     </div>
     {% endblock body %}
-    
-    
+
+
     {% block related_resources %}
+    <div class="rp-report-section-title" style="margin-top: 3rem;">
+      <h4 class="rp-section-title">{% trans 'Related Resources' %}</h4>
+    </div>
+
     <div class="rp-report-section relative report-related-resources">
-        <div class="rp-report-section-title">
-            <h4 class="rp-section-title">{% trans 'Related Resources' %}</h4>
-        </div>
-        
         <!-- ko foreach: { data: Object.values(report.relatedResourcesLookup()), as: 'resourceData' } -->
         <!-- ko if: resourceData.totalRelatedResources > 0 || !$parent.hideEmptyNodes() -->
-        <h5 class="rp-tile-title">
+        <!-- ko if: $index() !== 0 --><hr class="rp-tile-separator"><!-- /ko -->
+        <h5 class="rp-tile-title" style="margin-left: 50px; padding-left: 20px;">
             <span class="rp-tile-title-float" data-bind="text: resourceData.name"></span>
         </h5>
 
-        <div class="rp-card-section">
+        <div class="rp-card-section" style="margin-left: 100px; padding-left: 40px;">
             <!-- ko foreach: { data: resourceData.loadedRelatedResources(), as: 'relatedResource' } -->
             <div class="rp-report-container-tile">
                 <div class="row rp-report-tile">
@@ -100,16 +101,16 @@
                 <span data-bind="text: '(' + (resourceData.totalRelatedResources - resourceData.loadedRelatedResources().length) + ')'"></span>
             </button>
             <!-- /ko -->
-                
-            <!--ko if: resourceData.totalRelatedResources === 0 -->	
-            <div class="rp-report-container-tile">	
-                <div class="row rp-report-tile rp-no-data">{% trans 'No relationships added' %}</div>	
-            </div>	
+
+            <!--ko if: resourceData.totalRelatedResources === 0 -->
+            <div class="rp-report-container-tile">
+                <div class="row rp-report-tile rp-no-data">{% trans 'No relationships added' %}</div>
+            </div>
             <!--/ko-->
         </div>
         <!-- /ko -->
-        <!-- /ko -->    
-    </div>  
+        <!-- /ko -->
+    </div>
     {% endblock related_resources %}
 
     {% block footer %}

@@ -17,11 +17,11 @@
           <!--/ko-->
 
           <!--ko if: provisional_resource == 'partial' && $parent.userIsReviewer -->
-          <a class="provisional-edits" href="" onclick="goDown();"><i class="fa fa-exclamation-circle"></i> {% trans "Provisional" %} </a>
+          <a class="provisional-edits" href=""><i class="fa fa-exclamation-circle"></i> {% trans "Provisional" %} </a>
           <!--/ko-->
 
           <!-- ko if: !!$parent.details -->
-          <!-- <a class="search-candidate-link" href="" onclick="goDown();" data-bind="click: showDetails"><i class="fa fa-info-circle"></i> {% trans "Details" %} </a> -->
+          <!-- <a class="search-candidate-link" href="" data-bind="click: showDetails"><i class="fa fa-info-circle"></i> {% trans "Details" %} </a> -->
           <!-- /ko -->
 
           <!--ko if: canEdit -->
@@ -29,21 +29,25 @@
           <!--/ko-->
 
           <!-- ko if: !!$parent.mapFilter -->
-          <a class="search-candidate-link" href="" onclick="goDown();" data-bind="visible: point, click: mapLinkClicked"><i class="fa fa-map-marker"></i> {% trans "Map" %} </a>
+          <a class="search-candidate-link" href="" onclick="document.getElementById('filtersRow1').style.display = 'block'; window.scrollTo(0, 0);" data-bind="visible: point, click: mapLinkClicked"><i class="fa fa-map-marker"></i> {% trans "Map" %} </a>
           <!-- /ko -->
 
           <!--ko ifnot: $root.resourceEditorContext -->
 
           <!--ko if: !!$parent.relatedResourcesManager && canRead -->
-          <a class="search-candidate-link" href="" onclick="goDown();" data-bind="click: showrelated"><i class="fa fa-code-fork"></i> {% trans "Related Resources" %} </a>
+          <a class="search-candidate-link" href="" onclick="document.getElementById('filtersRow1').style.display = 'block'; window.scrollTo(0, 0);" data-bind="click: showrelated"><i class="fa fa-code-fork"></i> {% trans "Related Resources" %} </a>
           <!--/ko-->
+
+          <!--koc if: document.getElementById('filtersRow1').style.display != 'none' -->
+          <!-- <a class="search-candidate-link" href="" onclick="document.getElementById('filtersRow1').style.display = 'none';"><i class="fa fa-close"></i> {% trans "Hide Top Panel" %} </a> -->
+          <!--/koc-->
 
           <!--ko if: $root.resourceEditorContext -->
           <!--ko if: relatable & $root.editingInstanceId != resourceinstanceid -->
-          <a class="search-candidate-link pull-right" href="" onclick="goDown();" data-bind="click: function(val){relationshipcandidacy(val); showrelated()}"><i class="fa fa-code-fork"></i> {% trans "Relate Resource" %} </a>
+          <a class="search-candidate-link pull-right" href="" data-bind="click: function(val){relationshipcandidacy(val); showrelated()}"><i class="fa fa-code-fork"></i> {% trans "Relate Resource" %} </a>
           <!--/ko-->
           <!--ko if: relatable == false || $root.editingInstanceId == resourceinstanceid -->
-          <a class="search-candidate-link unrelatable-search-result pull-right" href="" onclick="goDown();"><i class="fa fa-code-fork"></i> {% trans "Cannot Be Related" %} </a>
+          <a class="search-candidate-link unrelatable-search-result pull-right" href=""><i class="fa fa-code-fork"></i> {% trans "Cannot Be Related" %} </a>
           <!--/ko-->
           <!--/ko-->
           <!--/ko-->
